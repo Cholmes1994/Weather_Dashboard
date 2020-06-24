@@ -10,45 +10,50 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
-    <script type="text/javascript" src="./script.js"></script>
+
 </head>
 
 <body>
-    <h1 class="text-center">Weather Dashboard</h1>
+    <h1 id="bigHeader" class="text-center">Weather Dashboard</h1>
 
-    <div class="container ml-0 bg-light">
+    <main id="mainArea" class="container float-right">
+        <h1 class="text-center" id="cityView"></h1>
+        <h3 class="text-center" id="dateView"></h3>
+        <p class="text-center" id="temp"></p>
+        <p class= "text-center" id="wind"></p>
+        <p class="text-center" id="humid"></p>
+
+
+    </main>
+
+
+
+    <aside id="searchArea" class="container ml-2 bg-light float-left">
         <div class="row">
-            <div class="col-3 search pt-2">
+            <div class="col search pt-2">
                 Search for a City:
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
-                <nav class="navbar pl-0">
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2 citysearch " type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </nav>
-                <ul id="history" class="list-group mt-2">
-                    <li class="list-group-item">City 1</li>
-                    <li class="list-group-item">City 2</li>
-                    <li class="list-group-item">City 3</li>
-                    <li class="list-group-item">City 4</li>
-                    <li class="list-group-item">City 5</li>
-                    <li class="list-group-item">City 6</li>
-                    <li class="list-group-item">City 7</li>
-                    <li class="list-group-item">City 8</li>
-
-                </ul>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend ml-2">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon1">Search</button>
+                </div>
+                <input type="search" id="citysearch" class="form-control" placeholder="Search here.."
+                    aria-label="Example text with button addon" aria-describedby="button-addon1">
             </div>
+            <ul id="history" class="list-group mt-2">
+
+
+            </ul>
         </div>
-    </div>
-    </div>
+        </div>
+
+    </aside>
 
 
 
-    
+    <script type="text/javascript" src="./script.js"></script>
 </body>
 
 </html>

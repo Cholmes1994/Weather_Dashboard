@@ -1,35 +1,60 @@
-$("button").on("click", function(event){
+$(".btn").on("click", function (event) {
 
-event.preventDefault();
+  event.preventDefault();
 
-var searchInput = $("citysearch").val();
+  var city = $("citysearch").val();
 
-var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + {cityName} + "&appid=a24140e4ac55fb8c56b47c98d13d46a8"
+  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=a24140e4ac55fb8c56b47c98d13d46a8"
 
-var today = new Date();
+  var today = new Date();
 
-var date = (today.getMonth()+1) + "-" + today.getDate() + "-" + today.getFullYear();
+  var date = (today.getMonth() + 1) + "-" + today.getDate() + "-" + today.getFullYear();
 
-//AJAX Call
-$.ajax({
+  //AJAX Call
+  $.ajax({
     url: queryURL,
     method: "GET"
+
   })
 
-  .then(function(response) {
-    console.log(queryURL);
 
-    console.log(response);
+    .then(function (response) {
+      console.log(queryURL);
 
-    var newList = $("<li>");
+      console.log(response);
 
-    if (searchInput != null) {
-      $("#citydata").text(response.name + " " + date);
-      newList.text(searchInput);
+      var newList = $("<li>");
+
+
+      newList.text(city);
+      newList.addClass("list-group-item");
       $("#history").prepend(newList);
-    
-    
-    }
 
-  });
-});
+      $("#cityView").text(response.name);
+      $("#dateView").text(date);
+
+      $("#temp").text("Temperature(F): " + Math.floor((response.main.temp + 9) / 5 - 459.67) + "F");
+      $("humid").text("Humidity: " + ((response.main.humidity) + "%"));
+      $("wind").text("Wind Speed: " + ((response.wind.speed) + " MPH"));
+
+
+
+
+      var lon = response.coord["lon"];
+      var lat = response.coord["lat"];
+      var uvURL = "http://api.openweathermap.org/data/2.5/uvi?appid=a24140e4ac55fb8c56b47c98d13d46a8" + lat + "&lon=" + lon;
+
+      $.ajax({
+        url: uvURL,
+        method: "GET"
+      })
+     
+       .then(function (response) {
+
+        $("uvIndex").text("UV Index: " + response.value);
+
+       });
+
+
+      });
+    })

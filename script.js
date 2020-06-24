@@ -1,4 +1,5 @@
 $("button").on("click", function(event){
+
 event.preventDefault();
 
 var searchInput = $("citysearch").val();
@@ -7,20 +8,21 @@ var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + {cityName}
 
 var today = new Date();
 
-var date = 
+var date = (today.getMonth()+1) + "-" + today.getDate() + "-" + today.getFullYear();
 
 $.ajax({
-url: queryURL,
-method: "GET"
-})
+    url: queryURL,
+    method: "GET"
+  })
 
-.then(function(response){
-console.log(queryURL);
+  .then(function(response) {
+    console.log(queryURL);
 
-console.log(response);
+    console.log(response);
 
-})
+    if (searchInput != null) {
+      $("#citydata").text(response.name + " " + date);
+    }
 
-
-
-})
+  });
+});

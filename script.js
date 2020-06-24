@@ -10,6 +10,7 @@ var today = new Date();
 
 var date = (today.getMonth()+1) + "-" + today.getDate() + "-" + today.getFullYear();
 
+//AJAX Call
 $.ajax({
     url: queryURL,
     method: "GET"
@@ -20,8 +21,14 @@ $.ajax({
 
     console.log(response);
 
+    var newList = $("<li>");
+
     if (searchInput != null) {
       $("#citydata").text(response.name + " " + date);
+      newList.text(searchInput);
+      $("#history").prepend(newList);
+    
+    
     }
 
   });
